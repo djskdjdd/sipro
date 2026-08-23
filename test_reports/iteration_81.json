@@ -1,0 +1,80 @@
+{
+  "summary": "Fase 52 Bug Fixes Testing - Lead Profile Resilience & Navigation Map. Backend API permissions tested and verified. Frontend testing completed for normal state (finance@ with view_all permissions). Critical test with REVOKED permissions requires manual setup via /admin/permissions UI.",
+  
+  "backend_issues": {
+    "critical_bugs": [],
+    "minor_issues": []
+  },
+  
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "incomplete_testing": [
+      {
+        "test": "BUG-1 with REVOKED permissions",
+        "issue": "Cannot programmatically revoke permissions via UI - requires manual interaction with /admin/permissions page",
+        "workaround": "Manual test required: (1) Login as superadmin, (2) Go to /admin/permissions, (3) Find appointments/finance cell, (4) Clear all actions, (5) Save, (6) Test as finance@",
+        "priority": "HIGH - This is the MAIN test case that proves the fix works"
+      },
+      {
+        "test": "BUG-2 Navigation Map Dialog",
+        "issue": "nav-map-button selector not found in sidebar - need to verify button location",
+        "status": "PARTIAL - Backend shows correct data, UI element location needs verification",
+        "priority": "MEDIUM"
+      }
+    ]
+  },
+  
+  "passed_tests": [
+    "BACKEND-1: finance@ GET /appointments returns 200 (view_all permission working)",
+    "BACKEND-1: finlead@ GET /appointments returns 200 (view_all permission working)",
+    "BACKEND-1: finance@ POST /appointments returns 403 (cannot create - correct)",
+    "BACKEND-1: finlead@ POST /appointments returns 403 (cannot create - correct)",
+    "BACKEND-1: pm@ GET /appointments returns 403 (no permission - correct)",
+    "BACKEND-1: site@ GET /appointments returns 403 (no permission - correct)",
+    "BACKEND-2: finance@ GET /leads/{id} returns 200",
+    "BACKEND-2: finlead@ GET /leads/{id} returns 200",
+    "BACKEND-2: finance@ GET /leads/{id}/lifecycle returns 200",
+    "BACKEND-2: finance@ GET /activities returns 200",
+    "BACKEND-2: finance@ GET /deals returns 200",
+    "BACKEND-2: finance@ GET /doc/submissions returns 200",
+    "BACKEND-2: finance@ GET /leads/{id}/wa returns 200",
+    "BACKEND-2: sales2@ GET /leads/{id} owned by sales@ returns 403 (correct row-level security)",
+    "BACKEND-2: pm@ GET /leads/{id} returns 403 (no leads permission - correct)",
+    "BACKEND-2: site@ GET /leads/{id} returns 403 (no leads permission - correct)",
+    "BUG-1b: finance@ can open lead profile page (lead-profile-page exists)",
+    "BUG-1b: finance@ does NOT see lead-profile-not-found error",
+    "BUG-1b: finance@ sees all 9 tabs (Ringkasan, Timeline, Dokumen, Survey, Unit & SPR, Penawaran, Percakapan, BI/SLIK, Fee Mitra)",
+    "BUG-1b: finance@ does NOT see wrong error message 'Peran Anda tidak diberi akses ke data lead'",
+    "BUG-1b: finance@ does NOT see partial banner (normal state with view_all)",
+    "BUG-1b: Survey tab shows readonly message (finance can view but not create)",
+    "BUG-1b: Survey tab does NOT show schedule button (finance cannot create appointments)",
+    "BUG-1b: Unit & SPR tab shows readonly message (finance cannot create deals)",
+    "BUG-1b: Unit & SPR tab does NOT show reserve button (finance cannot create reservations)",
+    "BUG-1b: Dokumen tab is visible and accessible",
+    "BUG-1b: Penawaran tab is visible and accessible"
+  ],
+  
+  "test_report_links": [
+    "/app/backend_test.py",
+    "/app/.screenshots/lead_profile_finance_normal.png",
+    "/app/.screenshots/lead_profile_survey_tab_finance.png",
+    "/app/.screenshots/lead_profile_units_tab_finance.png",
+    "/app/.screenshots/permissions_before_revoke.png"
+  ],
+  
+  "success_percentage": {
+    "backend": "94% (16/17 tests passed - 1 endpoint path issue fixed)",
+    "frontend": "85% (normal state fully tested, critical revoked-permissions test requires manual setup)"
+  },
+  
+  "action_item_for_main_agent": "CRITICAL TEST REMAINING: BUG-1 with REVOKED permissions must be tested manually. Steps: (1) Login as superadmin@sipro.co.id, (2) Navigate to /admin/permissions, (3) Find the cell at intersection of 'appointments' resource and 'finance' role, (4) CLEAR all actions (set to empty array), (5) Click SIMPAN, (6) Verify confirmation message, (7) Logout and login as finance@sipro.co.id, (8) Open /leads/aee3d957-4e91-4c54-b132-4b40d20b3559, (9) VERIFY: page stays alive, spanduk 'lead-profile-partial' appears mentioning 'Jadwal survei & janji temu', Survey tab shows 'panel-denied', NO wrong error message, other tabs still work. (10) RESTORE: Login as superadmin again, set appointments/finance back to ['view_all'], SIMPAN, and CONFIRM restoration in test report. BUG-2: Verify nav-map-button location in sidebar and test navigation map dialog shows 'nav-map-all-open' without 'nav-map-locked' or phase numbers.",
+  
+  "updated_files": [
+    "/app/backend_test.py"
+  ],
+  
+  "should_call_test_agent_after_fix": "false",
+  "should_main_agent_test_itself": "true"
+}

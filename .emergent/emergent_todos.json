@@ -1,0 +1,46 @@
+[
+  {
+    "content": "Pulihkan lingkungan dari repo GitHub + baseline gates OVERALL PASS (46 gates)",
+    "status": "completed"
+  },
+  {
+    "content": "56A: perbaiki 3 cacat permukaan Fase 53 (tautan tab, label manusia vs kode kolom, kejujuran lingkup data)",
+    "status": "completed"
+  },
+  {
+    "content": "56A guardrail: gate 46 78->95 pemeriksaan + mutasi_53 37->46 mutan (46/46 TERTANGKAP) + run_all_gates PASS",
+    "status": "completed"
+  },
+  {
+    "content": "56B: uji E2E permukaan Fase 53 (testing agent + verifikasi peramban main agent) — semua user story terbukti",
+    "status": "completed"
+  },
+  {
+    "content": "Bersihkan bahan uji POC53 (scripts/_fixture53.py) supaya keadaan demo kembali bersih",
+    "status": "in_progress"
+  },
+  {
+    "content": "56C POC: poc/poc_56.py — pembatalan kontrak & refund berjurnal (hitungan potongan, gerbang, jurnal berimbang, idempotensi, unit kembali ke stok)",
+    "status": "pending"
+  },
+  {
+    "content": "56C backend: cancellation_engine.py + router + Kamus Data + jurnal GL + dokumen pembatalan",
+    "status": "pending"
+  },
+  {
+    "content": "56C frontend: dialog pengajuan + pratinjau potongan, keputusan finlead, riwayat pembatalan di profil pembeli, panel portal pembeli",
+    "status": "pending"
+  },
+  {
+    "content": "56C guardrail: gate baru verify_cancellation_refund.py (daftar ke run_all_gates.sh) + scripts/mutasi_56.py semua TERTANGKAP",
+    "status": "pending"
+  },
+  {
+    "content": "56C E2E multi-peran lewat testing_agent_v3 + perbaiki temuan",
+    "status": "pending"
+  },
+  {
+    "content": "56D dokumentasi: CODEBASE_MAP.md, docs/v2/50_CANCELLATION_REFUND_SPEC.md, test_credentials.md, test_result.md, arsip plan",
+    "status": "pending"
+  }
+]

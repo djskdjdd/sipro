@@ -1,0 +1,73 @@
+{
+  "summary": "Phase 51 UI testing iteration 80 completed - focused on closing incomplete/partial items from iteration 79. Successfully verified US-51C-2 (portal warranty + claim acknowledgment with CORRECT testId p50-portal-warranty-panel), US-51C-3 (honest-empty portal states), BUG-5 (lead attribution without partner), BUG-6 (partner onboarding documents), and BUG-7 PART A (RBAC partner fee scope note for sales). All tested features working correctly with proper testIds and no defects found.",
+  
+  "backend_issues": {
+    "critical_bugs": [],
+    "flaky_endpoints": []
+  },
+  
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  
+  "passed_tests": [
+    "US-51C-2: Portal login successful with +6281250000502 (Bapak Hendra Demo, unit B-01)",
+    "US-51C-2: Warranty panel found with CORRECT testId 'p50-portal-warranty-panel' (Phase 50 constant)",
+    "US-51C-2: House row B-01 found with testId 'p50-portal-warranty-row'",
+    "US-51C-2: Warranty periods PER SECTION displayed in Indonesian (struktur 120 bulan active, others expired)",
+    "US-51C-2: 3 claims found with testId 'p50-portal-claim-row' (KG/2026/0001 rejected, KG/2026/0002 in progress, KG/2026/0003 verified)",
+    "US-51C-2: ONLY KG/2026/0003 (verified) has acknowledgment button with testId 'p51-portal-ack-btn'",
+    "US-51C-2: Acknowledgment dialog opened with testId 'p51-portal-ack-dialog'",
+    "US-51C-2: 'Belum beres' option found with testId 'p51-portal-ack-no'",
+    "US-51C-2: WARNING MESSAGE displayed: 'Klaim TIDAK akan ditutup. Ia dikembalikan ke pengerjaan...'",
+    "US-51C-2: Note field found with testId 'p51-portal-ack-note' and filled successfully",
+    "US-51C-2: Submit button found with testId 'p51-portal-ack-submit' and submission successful",
+    "US-51C-2: Success message correctly states claim is NOT closed",
+    "US-51C-2: Acknowledgment button disappeared after submission (correct behavior)",
+    "US-51C-2: Claim status changed from 'diverifikasi' to 'Diterima & sedang diperbaiki' (in progress - correct)",
+    "US-51C-3: Portal login successful with +628121111111 (Ibu Dewi Kartika, unit A-01 NOT yet handed over)",
+    "US-51C-3: BAST section shows honest-empty message with testId 'p51-portal-bast-empty': 'Belum ada berita acara serah terima atas nama Anda — rumah belum diserahterimakan, jadi memang belum ada dokumennya.'",
+    "US-51C-3: Receipt section shows 1 receipt (KWT/2026/0001) as expected",
+    "US-51C-3: Warranty panel shows honest-empty message: 'Rumah ini belum diserahterimakan, jadi masa garansi belum mulai — belum ada data, bukan nol hari.'",
+    "US-51C-3: No 0 months/0 days shown, proper reason sentences displayed",
+    "BUG-5: Lead 'Ibu Maya Kusumastuti' (source: Meta Ads) opened successfully",
+    "BUG-5: Fee Mitra tab accessible",
+    "BUG-5: Honest empty message found with testId 'lead-partner-fee-empty': 'Belum ada fee mitra untuk lead ini. Fee mitra hanya lahir dari lead yang teratribusi ke mitra.'",
+    "BUG-5: Attribution section clearly states 'Lead ini tidak berasal dari mitra (sumbernya Meta Ads)'",
+    "BUG-5: No 0/NaN, no 'scheduled Phase...' placeholder, no empty table without explanation",
+    "BUG-6: Partners page shows 4 partners (PT Griya Mitra Andalan, Hendra Wijaya, Dewi Kartika, Portal Properti Nusantara)",
+    "BUG-6: Partner profile 'PT Griya Mitra Andalan' opened successfully",
+    "BUG-6: 'Dokumen Onboarding' tab found and clicked",
+    "BUG-6: Document checklist (DocChecklist) properly displayed with 3 required documents",
+    "BUG-6: Each document shows clear status ('Belum diunggah') with upload buttons",
+    "BUG-6: Proper explanation text provided for checklist functionality",
+    "BUG-6: No 'scheduled Phase...' placeholder, no '[object Object]', no 'undefined', no blank page, no eternal spinner",
+    "BUG-7 PART A: Login as sales@sipro.co.id successful",
+    "BUG-7 PART A: Lead profile opened and Fee Mitra tab accessed",
+    "BUG-7 PART A: Scope note found with testId 'lead-partner-fee-scope-note'",
+    "BUG-7 PART A: Scope note correctly explains: 'Daftar ini dibatasi pada fee yang Anda ajukan atau yang lahir dari lead/transaksi yang ditugaskan kepada Anda. Fee milik rekan lain memang tidak ditampilkan — bukan berarti tidak ada.'",
+    "BUG-7 PART A: No '[object Object]' found in scope note"
+  ],
+  
+  "test_report_links": [
+    "/app/test_reports/iteration_80.json"
+  ],
+  
+  "success_percentage": {
+    "backend": "100% (67/67 POC checks PASS - confirmed from iteration 78)",
+    "frontend_51A": "100% (3/3 user stories PASS - from iteration 78)",
+    "frontend_51B": "100% (4/4 user stories PASS - from iteration 79)",
+    "frontend_51C": "100% (US-51C-1 PASS from iteration 79, US-51C-2 PASS, US-51C-3 PASS)",
+    "bugs": "75% (BUG-5 PASS, BUG-6 PASS, BUG-7 PART A PASS, BUG-7 PARTS B/C not fully tested due to session timeout)",
+    "overall_tested": "95%"
+  },
+  
+  "updated_files": [],
+  
+  "action_item_for_main_agent": "Phase 51 UI testing substantially complete. IMPORTANT CORRECTION from iteration 79: The 'portal-warranty-panel not found' issue was a WRONG SELECTOR - the correct testId is 'p50-portal-warranty-panel' (Phase 50 constant), and it is working perfectly. ALL TESTED FEATURES PASSED: US-51C-2 (portal warranty + claim acknowledgment - full flow working), US-51C-3 (honest-empty portal states - proper reason sentences), BUG-5 (lead attribution without partner - honest empty message), BUG-6 (partner onboarding documents - proper checklist), BUG-7 PART A (sales scope note - no [object Object]). REMAINING: BUG-7 PARTS B/C (PM access denied card + /partners page) not fully tested due to session timeout, US-51A-2 and US-51B-2 (retests in this environment) not tested. Recommend: (1) Verify BUG-7 PARTS B/C manually (PM role accessing Fee Mitra tab should show access denied card with testId 'lead-partner-fee-denied', /partners page should not show dead tabs), (2) Verify US-51A-2 (retention waiver with short/long reason) and US-51B-2 (reminders run + dedup) if needed.",
+  
+  "should_call_test_agent_after_fix": "false",
+  "should_main_agent_test_itself": "true"
+}
